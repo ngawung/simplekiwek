@@ -1,18 +1,11 @@
-const axios = require('axios');
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const { sleep } = require('sleep-async')().Promise;
-
-const WIKI = axios.create({
-	baseURL: 'http://aqwwiki.wikidot.com/',
-	timeout: 20000,
-});
+const { getDom, sleep } = require("./utils/wikiplus.js");
 
 (async () => {
 	try {
 
+		const page_name = "staffs";
 		
-		let dom = await getDom("staffs");
+		let dom = await getDom(page_name);
 		let page = dom.window.document.querySelector("#page-content");
 
 		// find pagination number
@@ -32,7 +25,7 @@ const WIKI = axios.create({
 
 			// load new pager
 			if (pager != 0) {
-				dom = await getDom(`staffs/p/${pager}`);
+				dom = await getDom(`${page_name}/p/${pager}`);
 				page = dom.window.document.querySelector("#page-content");
 			}
 
@@ -47,7 +40,7 @@ const WIKI = axios.create({
 				// console.log(pager_curr);
 
 				// scrap first pager
-				if (pager_curr == null && pager == 0) {
+				if (pager == 0) {
 
 					const item = box[i].querySelectorAll(".list-pages-item");
 					console.log(`(${i}) There is ${item.length} item`);
@@ -58,12 +51,12 @@ const WIKI = axios.create({
 						box_array[i].push(itemName);
 					}
 
-				} else if (pager_curr != null && pager != 0) {
+				} else if (pager != 0 && pager_curr != null) {
 
 					pager_currNum = parseInt(pager_curr.textContent.split(" ")[1]);
 					if (pager_currNum == pager) {
 						const item = box[i].querySelectorAll(".list-pages-item");
-						console.log(`(${i}) There is ${item.length} item`);
+						console.log(`(${i}) There is ${item.length} item (PAGER)`);
 
 						for (let y=0; y<item.length; y++) {
 							const itemName = item[y].querySelector("p").textContent;
@@ -77,37 +70,8 @@ const WIKI = axios.create({
 			}
 		}
 
-		console.log("done");
-
-		// const box = page.querySelectorAll(".list-pages-box");
-
-		// console.log(`There is ${box.length} list-pages-box`);
-
-		// for (let i=0; i<box.length; i++) {
-		// 	const item = box[i].querySelectorAll(".list-pages-item");
-
-		// 	console.log(`There is ${item.length} list-pages-item in box ${i}`);
-
-		// 	for (let y=0; y<item.length; y++) {
-		// 		const itemName = item[y].querySelector("p").textContent;
-		// 		console.log(itemName);
-		// 	}
-		// }
-
-		// console.log(box[2].querySelectorAll(".list-pages-item")[1].querySelector("p").textContent)
-
 	} catch(e) {
 		console.log(e.stack || e);
 	}
 
 })();
-
-async function getDom(link) {
-	try {
-		console.log(`Loading ${link}...`);
-		const result = await WIKI.get(link);
-		return new JSDOM(result.data);
-	} catch(e) {
-		throw new Error("Failed to fetch dom");
-	}
-}

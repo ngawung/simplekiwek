@@ -20,6 +20,7 @@
   "dependencies": {
     "axios": "^0.21.0",
     "jsdom": "^16.4.0",
+    "retry-axios": "^2.3.0",
     "sleep-async": "^1.0.5"
   }
 }
