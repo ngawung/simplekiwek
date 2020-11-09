@@ -1,6 +1,7 @@
 dependencies:
   axios: 0.21.0
   jsdom: 16.4.0
+  sleep-async: 1.0.5
 lockfileVersion: 5.2
 packages:
   /abab/2.0.5:
@@ -513,6 +514,10 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==
+  /sleep-async/1.0.5:
+    dev: false
+    resolution:
+      integrity: sha512-G2B+GBBshG+gSKZZeCTX5ONnF7XVUVpYP0O4QYWmXH6XIpEUfcFbWWwQKleZixg68PWEArvVEi23159F7ohlUQ==
   /source-map/0.6.1:
     dev: false
     engines:
@@ -690,3 +695,4 @@ packages:
 specifiers:
   axios: ^0.21.0
   jsdom: ^16.4.0
+  sleep-async: ^1.0.5

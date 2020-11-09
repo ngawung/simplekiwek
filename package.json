@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ngawung/simplekiwek#readme",
   "dependencies": {
     "axios": "^0.21.0",
-    "jsdom": "^16.4.0"
+    "jsdom": "^16.4.0",
+    "sleep-async": "^1.0.5"
   }
 }
