@@ -19,8 +19,12 @@
   "homepage": "https://github.com/ngawung/simplekiwek#readme",
   "dependencies": {
     "axios": "^0.21.0",
+    "get-image-colors": "^4.0.0",
     "jsdom": "^16.4.0",
-    "retry-axios": "^2.3.0",
+    "lowdb": "^1.0.0",
+    "nearest-color": "^0.4.4",
+    "node-fetch": "^2.6.1",
+    "sharp": "^0.26.2",
     "sleep-async": "^1.0.5"
   }
 }
